@@ -63,7 +63,7 @@ int main() {
     for(int i = 0; i< 1200; ++i)
     {
         graph.clean();
-        graph.addPlot(linePoints,0, 0 + i , 100 + i, cv::Scalar(255,0,0), 5);
+        graph.addPlot(linePoints,0, 0 + i , 100 + i, cv::Scalar(255,0,0), 2);
         graph.show();
         cv::waitKey(10);
     }
