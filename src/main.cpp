@@ -7,7 +7,7 @@
 using namespace cr::utils;
 
 int main() {
-    // Sound propertiesP
+    // Sound properties
     const unsigned SAMPLE_RATE = 100; // Sample rate in Hz
     const float FREQUENCY = 5; // Frequency of the tone (A4)
     const double TONE_DURATION = 0.5; // Duration of the tone in seconds
@@ -44,22 +44,16 @@ int main() {
         return 1;
     }
 
-    // Free the raw audio data array
-    //delete[] rawAudioData;
-
     // Create a sound source and attach the buffer to it
     sf::Sound sound;
     sound.setBuffer(buffer);
 
-    // Play the sound
-    sound.play();
-
     Plot graph("Test graph", 1280, 720,cv::Scalar(0, 128, 128), cv::Scalar(50, 50, 50));
-
     std::vector<int16_t> linePoints(1280);
-
     std::copy(rawAudioData, rawAudioData + 1280, linePoints.begin());
 
+    // Play the sound
+    sound.play();
     for(int i = 0; i< 1200; ++i)
     {
         graph.clean();
