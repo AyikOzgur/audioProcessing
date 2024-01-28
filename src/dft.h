@@ -3,4 +3,4 @@
 #include"Complex.h"
 #include<vector>
 
-std::vector<Complex> computeDFT(const std::vector<double>& inputSignal);
+std::vector<double> computeDFT(const std::vector<double>& inputSignal, double samplingRate);
