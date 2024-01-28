@@ -12,7 +12,7 @@ public:
         double NUM_TOTAL_SAMPLES = kernelSize;
         double CUTOFF_FREQUENCY_HZ = fc;
         double SAMPLE_TIME_S = 1 / fs;
-        double NUM_SHIFT_SAMPLES = 0;
+        double NUM_SHIFT_SAMPLES = 0 ;
 
         // calculate impulse response by using fs(sampling freq), fc(cut-off freq) and kernel size.
 
@@ -29,6 +29,19 @@ public:
 
         }
 
+        // Apply window
+        int N = m_impulseResponse.size();
+        for (int n = 0; n < N; ++n) 
+        {
+            // hamming
+            //m_impulseResponse[n] *= 0.54 - 0.46 * cos(2 * PI * n / (N - 1));
+        
+            // blackman
+            m_impulseResponse[n] *= 0.42 - 0.5 * cos(2 * PI * n / (N - 1)) + 0.08 * cos(4 * PI * n / (N - 1));
+        
+            // hanning
+            //m_impulseResponse[n] *= 0.5 * (1 - cos(2 * PI * n / (N - 1)));
+        }
 
 	}
 

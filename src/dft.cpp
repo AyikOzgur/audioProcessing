@@ -6,7 +6,7 @@
 
 
 // Function to compute the Discrete Fourier Transform (DFT)
-std::vector<double> computeDFT(const std::vector<double>& inputSignal, double samplingRate)
+std::vector<double> computeDFT(const std::vector<int16_t>& inputSignal, double samplingRate, int numberOfFreqs)
 {
 
     // prepare complex version of signal
@@ -48,13 +48,13 @@ std::vector<double> computeDFT(const std::vector<double>& inputSignal, double sa
     std::iota(indices.begin(), indices.end(), 0);
 
     // Find indices of the highest 5 elements
-    std::vector<size_t> highestIndices(4);
+    std::vector<size_t> highestIndices(numberOfFreqs);
     std::partial_sort_copy(indices.begin(), indices.end(), highestIndices.begin(), highestIndices.end(),
         [&freqs](size_t i1, size_t i2) { return freqs[i1] > freqs[i2]; });
 
     std::vector<double> outFreqs;
 
-    // Output the indices of the highest 5 elements
+    // Output the indices of the highest elements
     for (size_t idx : highestIndices)
     {
         outFreqs.push_back(idx * (samplingRate / N));
